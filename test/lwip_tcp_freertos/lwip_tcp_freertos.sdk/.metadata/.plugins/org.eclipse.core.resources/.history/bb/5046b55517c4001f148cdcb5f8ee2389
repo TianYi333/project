@@ -1,0 +1,227 @@
+/*
+ * Copyright (C) 2016 - 2018 Xilinx, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ * SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+ * IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ *
+ */
+
+#include <stdio.h>
+#include "xparameters.h"
+#include "netif/xadapter.h"
+#include "platform_config.h"
+#include "xil_printf.h"
+#include "main.h"
+
+#if LWIP_IPV6==1
+#include "lwip/ip.h"
+#else
+#if LWIP_DHCP==1
+#include "lwip/dhcp.h"
+#endif
+#endif
+
+#ifdef XPS_BOARD_ZCU102
+#ifdef XPAR_XIICPS_0_DEVICE_ID
+int IicPhyReset(void);
+#endif
+#endif
+
+int main_thread();
+void print_echo_app_header();
+void echo_application_thread(void *);
+
+void lwip_init();
+
+#if LWIP_IPV6==0
+#if LWIP_DHCP==1
+extern volatile int dhcp_timoutcntr;
+err_t dhcp_start(struct netif *netif);
+#endif
+#endif
+
+#define THREAD_STACKSIZE 1024
+
+static struct netif server_netif;
+struct netif *echo_netif;
+
+#if LWIP_IPV6==1
+void print_ip6(char *msg, ip_addr_t *ip)
+{
+	print(msg);
+	xil_printf(" %x:%x:%x:%x:%x:%x:%x:%x\n\r",
+			IP6_ADDR_BLOCK1(&ip->u_addr.ip6),
+			IP6_ADDR_BLOCK2(&ip->u_addr.ip6),
+			IP6_ADDR_BLOCK3(&ip->u_addr.ip6),
+			IP6_ADDR_BLOCK4(&ip->u_addr.ip6),
+			IP6_ADDR_BLOCK5(&ip->u_addr.ip6),
+			IP6_ADDR_BLOCK6(&ip->u_addr.ip6),
+			IP6_ADDR_BLOCK7(&ip->u_addr.ip6),
+			IP6_ADDR_BLOCK8(&ip->u_addr.ip6));
+}
+
+#else
+
+/******************************任务函数定义******************************/
+void Lwip_Receive_thread(void *p);/* 以太网数据接收处理任务 */
+void network_thread(void *p);
+int main_thread();
+/******************************消息队列******************************/
+QueueHandle_t Lwip_Receive_Queue =NULL;/* 以太网数据接收队列 */
+QueueHandle_t Lwip_Send_Queue =NULL;/* 以太网数据接收队列 */
+void
+print_ip(char *msg, ip_addr_t *ip)
+{
+	xil_printf(msg);
+	xil_printf("%d.%d.%d.%d\n\r", ip4_addr1(ip), ip4_addr2(ip),
+			ip4_addr3(ip), ip4_addr4(ip));
+}
+
+void
+print_ip_settings(ip_addr_t *ip, ip_addr_t *mask, ip_addr_t *gw)
+{
+
+	print_ip("Board IP: ", ip);
+	print_ip("Netmask : ", mask);
+	print_ip("Gateway : ", gw);
+}
+
+#endif
+int main()
+{
+
+
+	sys_thread_new("Lwip_Receive_thread", Lwip_Receive_thread, 0,
+		THREAD_STACKSIZE,
+		DEFAULT_THREAD_PRIO);
+	//初始化lwIP协议栈
+    lwip_init();
+    // 使用sys_thread_new创建使用lwIP的network_thread网络线程
+    sys_thread_new("NW_THRD", network_thread, NULL,
+		THREAD_STACKSIZE,
+            DEFAULT_THREAD_PRIO);
+	Lwip_Receive_Queue = xQueueCreate(5,101);//网口接收数据暂订为101字节
+	Lwip_Send_Queue = xQueueCreate(5,20);//网口接收数据暂订为10字节
+	vTaskStartScheduler();
+	while(1);
+	return 0;
+}
+
+int main_thread()//函数进行lwIP初始化，并创建网络线程，等待网络配置完成后启动应用程序
+{
+	//初始化lwIP协议栈
+    lwip_init();
+    // 使用sys_thread_new创建使用lwIP的network_thread网络线程
+    sys_thread_new("NW_THRD", network_thread, NULL,
+		THREAD_STACKSIZE,
+            DEFAULT_THREAD_PRIO);
+    vTaskDelete(NULL);
+    return 0;
+}
+
+void network_thread(void *p)
+{
+    struct netif *netif;
+    //板子的MAC地址，每个PHY都不同
+    unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
+    ip_addr_t ipaddr, netmask, gw;
+
+    netif = &server_netif;
+
+    xil_printf("\r\n\r\n");
+    xil_printf("-----lwIP Socket Mode Echo server Demo Application ------\r\n");
+
+    //初始化要使用的IP地址
+    IP4_ADDR(&ipaddr,  192, 168, 1, 10);
+    IP4_ADDR(&netmask, 255, 255, 255,  0);
+    IP4_ADDR(&gw,      192, 168, 1, 1);
+
+    //添加网络接口到网络接口列表，并设置它为默认接口
+    if (!xemac_add(netif, &ipaddr, &netmask, &gw, mac_ethernet_address, PLATFORM_EMAC_BASEADDR)) {
+	xil_printf("Error adding N/W interface\r\n");
+	return;
+    }
+
+    print_ip_settings(&ipaddr, &netmask, &gw);
+    xil_printf("\r\n");
+    xil_printf("%20s %6s %s\r\n", "Server", "Port", "Connect With..");
+    xil_printf("%20s %6s %s\r\n", "--------------------", "------", "--------------------");
+	print_echo_app_header();
+	xil_printf("\r\n");
+
+    netif_set_default(netif);// 设置这个网络接口为默认网络接口
+    netif_set_up(netif);//指定网络接口为 “启动up”状态。
+    ///启动接受数据包的线程，这是lwIP正常工作所必需的
+    sys_thread_new("xemacif_input_thread", (void(*)(void*))xemacif_input_thread, netif,
+            THREAD_STACKSIZE,
+            DEFAULT_THREAD_PRIO);
+	sys_thread_new("echod", echo_application_thread, 0,
+			THREAD_STACKSIZE,
+			DEFAULT_THREAD_PRIO);
+    vTaskDelete(NULL);
+    return ;
+}
+
+
+void Lwip_Receive_thread(void *p)
+{
+	char Lwip_Receive_buf[101];
+	char Lwip_Send_buf[20];
+	int n=0;//n为接收数据数
+	u8_t timeout_count = 0;//超时计数
+	while(1)
+	{
+		vTaskDelay(1);
+		if(xQueueReceive(Lwip_Receive_Queue,Lwip_Receive_buf,10000) == pdFAIL)
+		{
+			timeout_count++;
+			if(timeout_count>=3)
+			{
+				timeout_count=0;
+				strcpy(Lwip_Send_buf, "NO data");
+				xQueueSend(Lwip_Send_Queue,Lwip_Send_buf,0);
+			}
+			return;
+		}
+		timeout_count = 0;
+		n=Lwip_Receive_buf[0];//n为接收数据数
+		printf("%s\n","Received data");
+		printf("%s\n",&Lwip_Receive_buf[1]);
+		printf("%d\n",n);
+		if (n == 6 && !(memcmp("update",&Lwip_Receive_buf[1], 6)))
+		{
+			printf("%s\n","update received data");
+		}
+		else
+		{
+			for(int i=1;i<(n+1);i++)
+			{
+				printf("%x\n",Lwip_Receive_buf[i]);
+			}
+		}
+		strcpy(Lwip_Send_buf, "Received data");
+		xQueueSend(Lwip_Send_Queue,Lwip_Send_buf,0);
+		memset(Lwip_Receive_buf, 0, 10);
+	}
+	vTaskDelete( NULL );
+}

@@ -1,0 +1,6 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]D:\ASUS-PC\Desktop\ZYNQ-Project\test\lwip_tcp_freertos\lwip_tcp_freertos.sdk\FSBL\Debug\FSBL.elf
+	D:\ASUS-PC\Desktop\ZYNQ-Project\test\lwip_tcp_freertos\lwip_tcp_freertos.sdk\lwip_tcp_freertos\Debug\lwip_tcp_freertos.elf
+}

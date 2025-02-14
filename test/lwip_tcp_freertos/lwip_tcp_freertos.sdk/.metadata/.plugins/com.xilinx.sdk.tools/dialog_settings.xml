@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="system_wrapper_hw_platform_0" key="programflash.hwplatform"/>
+	<item value="Local" key="system_wrapper_hw_platform_0-target"/>
+	<item value="D:\ASUS-PC\Desktop\ZYNQ-Project\test\lwip_tcp_freertos\lwip_tcp_freertos.sdk\lwip_tcp_freertos\bootimage\BOOT.bin" key="system_wrapper_hw_platform_0-imgFile"/>
+	<item value="D:\ASUS-PC\Desktop\ZYNQ-Project\test\lwip_tcp_freertos\lwip_tcp_freertos.sdk\FSBL\Debug\FSBL.elf" key="system_wrapper_hw_platform_0-fsblFile"/>
+	<item value="false" key="system_wrapper_hw_platform_0-verifyFlash"/>
+	<item value="false" key="system_wrapper_hw_platform_0-blankCheck"/>
+	<item value="" key="system_wrapper_hw_platform_0-offSet"/>
+	<item value="qspi-x4-single" key="system_wrapper_hw_platform_0-flashType"/>
+	<item value="Auto Detect" key="system_wrapper_hw_platform_0-device"/>
+</section>

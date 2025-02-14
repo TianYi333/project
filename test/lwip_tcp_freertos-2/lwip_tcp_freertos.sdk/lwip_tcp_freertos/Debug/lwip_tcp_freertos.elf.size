@@ -1,0 +1,2 @@
+   text	   data	    bss	    dec	    hex	filename
+ 198164	   3428	5364032	5565624	 54ecb8	lwip_tcp_freertos.elf

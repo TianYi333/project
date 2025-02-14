@@ -1,0 +1,6 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]D:\ASUS-PC\Desktop\ZYNQ-Project\test\lwip_echo_server\lwip_echo_server.sdk\FSBL\Debug\FSBL.elf
+	D:\ASUS-PC\Desktop\ZYNQ-Project\test\lwip_echo_server\lwip_echo_server.sdk\lwip_echo_server\Debug\lwip_echo_server.elf
+}

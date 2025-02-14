@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Mon Dec 30 09:23:39 2024
+# Process ID: 5528
+# Current directory: D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent43660 D:\ASUS-PC\Desktop\ZYNQ-Project\test\lwip_tcp_freertos-2\lwip_tcp_freertos.xpr
+# Log file: D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2/vivado.log
+# Journal file: D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2/lwip_tcp_freertos.xpr
+INFO: [Project 1-313] Project file moved from 'D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/APP/Vivado-Xilinx/Xilinx/Vivado/2018.3/data/ip'.
+update_compile_order -fileset sources_1
+launch_sdk -workspace D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2/lwip_tcp_freertos.sdk -hwspec D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2/lwip_tcp_freertos.sdk/system_wrapper.hdf
+INFO: [Vivado 12-393] Launching SDK...
+INFO: [Vivado 12-417] Running xsdk -workspace D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2/lwip_tcp_freertos.sdk -hwspec D:/ASUS-PC/Desktop/ZYNQ-Project/test/lwip_tcp_freertos-2/lwip_tcp_freertos.sdk/system_wrapper.hdf
+INFO: [Vivado 12-3157] SDK launch initiated. Please check console for any further messages.
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Dec 30 18:10:04 2024...
