@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="1710400443786.png" />
+    <None Remove="c1ea29ec5d06d897d9dd2d8b6dad3ca.png" />
+    <None Remove="iconfont.ttf" />
+    <None Remove="more.png" />
+    <None Remove="小程序.png" />
+    <None Remove="微信-聊天.png" />
+    <None Remove="微信-通讯录.png" />
+    <None Remove="微信_手机号.png" />
+    <None Remove="微信_聊天记录.png" />
+    <None Remove="微信_聊天记录_选中.png" />
+    <None Remove="微信图片_20240314151032.jpg" />
+    <None Remove="微信收藏 %281%29.png" />
+    <None Remove="微信收藏.png" />
+    <None Remove="微信文件.png" />
+    <None Remove="微信朋友圈.png" />
+    <None Remove="微信表情.png" />
+    <None Remove="微信通讯录 %281%29.png" />
+    <None Remove="截图.png" />
+    <None Remove="消息.png" />
+    <None Remove="聊天-文件.png" />
+    <None Remove="聊天.png" />
+    <None Remove="菜单.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="1710400443786.png" />
+    <Resource Include="c1ea29ec5d06d897d9dd2d8b6dad3ca.png" />
+    <resource Include="iconfont.ttf" />
+    <Resource Include="more.png" />
+    <Resource Include="小程序.png" />
+    <Resource Include="微信-聊天.png" />
+    <Resource Include="微信-通讯录.png" />
+    <Resource Include="微信_手机号.png" />
+    <Resource Include="微信_聊天记录.png" />
+    <Resource Include="微信_聊天记录_选中.png" />
+    <Resource Include="微信图片_20240314151032.jpg" />
+    <Resource Include="微信收藏 (1).png" />
+    <Resource Include="微信收藏.png" />
+    <Resource Include="微信文件.png" />
+    <Resource Include="微信朋友圈.png" />
+    <Resource Include="微信表情.png" />
+    <Resource Include="微信通讯录 (1).png" />
+    <Resource Include="截图.png" />
+    <Resource Include="消息.png" />
+    <Resource Include="聊天-文件.png" />
+    <Resource Include="聊天.png" />
+    <Resource Include="菜单.png" />
+  </ItemGroup>
+
+</Project>

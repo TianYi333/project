@@ -1,0 +1,225 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.36.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 123 123, 123, LIC=32B1Q-NGERN-74XS0-B5LGZ-CDLA4-V8KSG
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Plus  Version: 5.36.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.36.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+C:\Users\1\Desktop\R\2023-12-25蛤蟆沟智能化\ElectCor23.08.15_1hamagouing-dingxing\MDK-ARM\DEMO.uvprojx
+Project File Date:  12/25/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'DEMO'
+assembling startup_stm32f413xx.s...
+compiling bsp_ParaSyn.c...
+compiling croutine.c...
+compiling event_groups.c...
+compiling list.c...
+compiling queue.c...
+compiling stream_buffer.c...
+compiling tasks.c...
+compiling timers.c...
+compiling heap_4.c...
+compiling port.c...
+compiling adc.c...
+compiling bsp_mcz33996.c...
+compiling bsp_leds.c...
+compiling bsp_w25q128.c...
+compiling time.c...
+compiling bsp_485.c...
+compiling bsp_fault.c...
+compiling bsp_ncv7356.c...
+compiling sensor.c...
+..\userTask\sensor.c(327): warning:  #223-D: function "memset" declared implicitly
+  						memset(array_Angel_receive,0,20);
+..\userTask\sensor.c(78): warning:  #177-D: variable "test_hongwai"  was declared but never referenced
+  		char test_hongwai[3];
+..\userTask\sensor.c: 2 warnings, 0 errors
+compiling bsp_hd7279.c...
+..\Core\Src\bsp_hd7279.c(190): warning:  #177-D: variable "ch455_key_num"  was declared but never referenced
+  		uint8_t ch455_key_num=0;
+..\Core\Src\bsp_hd7279.c(6): warning:  #550-D: variable "Backvlaue1"  was set but never used
+  static 	uint8_t Backvlaue1,Backvlaue2=0;
+..\Core\Src\bsp_hd7279.c(6): warning:  #550-D: variable "Backvlaue2"  was set but never used
+  static 	uint8_t Backvlaue1,Backvlaue2=0;
+..\Core\Src\bsp_hd7279.c(28): warning:  #177-D: function "HD7279_Delay"  was declared but never referenced
+  static void HD7279_Delay(void)
+..\Core\Src\bsp_hd7279.c: 4 warnings, 0 errors
+compiling parameter_operation.c...
+compiling bsp_oled19264.c...
+..\Core\Src\bsp_oled19264.c(507): warning:  #177-D: variable "i"  was declared but never referenced
+  	uint8_t i=0;
+..\Core\Src\bsp_oled19264.c(586): warning:  #177-D: variable "i"  was declared but never referenced
+  	uint8_t i=0;
+..\Core\Src\bsp_oled19264.c: 2 warnings, 0 errors
+compiling stm32f4xx_it.c...
+compiling stm32f4xx_ll_adc.c...
+compiling main.c...
+../Core/Src/main.c(1291): warning:  #177-D: variable "temp"  was declared but never referenced
+  	uint8_t temp;
+../Core/Src/main.c(159): warning:  #177-D: variable "Key_Monitor_Task_Handle"  was declared but never referenced
+  static TaskHandle_t Key_Monitor_Task_Handle = NULL;
+../Core/Src/main.c(178): warning:  #177-D: variable "Idle_Display_Task_Handle"  was declared but never referenced
+  static TaskHandle_t Idle_Display_Task_Handle = NULL;
+../Core/Src/main.c(1289): warning:  #177-D: function "Key_Monitor_Task"  was declared but never referenced
+  static void Key_Monitor_Task(void* pvParameters)
+../Core/Src/main.c(1415): warning:  #177-D: function "Idle_Display_Task"  was declared but never referenced
+  static void Idle_Display_Task(void* pvParameters)
+../Core/Src/main.c(1866): warning:  #177-D: function "Fault_Pre_Task"  was declared but never referenced
+  static void Fault_Pre_Task(void* pvParameters)/* 总线接收任务*/
+../Core/Src/main.c(1857): warning:  #177-D: function "Fault_Near_Task"  was declared but never referenced
+  static void Fault_Near_Task(void* pvParameters)/* 总线接收任务*/
+../Core/Src/main.c: 7 warnings, 0 errors
+compiling stm32f4xx_hal_msp.c...
+compiling stm32f4xx_hal_adc_ex.c...
+compiling stm32f4xx_hal_flash.c...
+compiling interface.c...
+compiling stm32f4xx_hal_rcc_ex.c...
+compiling cansend.c...
+compiling drv_usart.c...
+..\userTask\drv_usart.c(70): warning:  #177-D: variable "ptr"  was declared but never referenced
+  		struct _hw_com_port* ptr = (struct _hw_com_port*)func;
+..\userTask\drv_usart.c(142): warning:  #550-D: variable "temp"  was set but never used
+  	uint32_t temp;
+..\userTask\drv_usart.c(454): warning:  #223-D: function "memset" declared implicitly
+  				memset(array_drvusart_bufR,0,20);			
+..\userTask\drv_usart.c: 3 warnings, 0 errors
+compiling stm32f4xx_hal_rcc.c...
+compiling controlded.c...
+..\userTask\controlded.c(144): warning:  #223-D: function "strcpy" declared implicitly
+  										strcpy(variant_interface_SingalMove,"     升立柱     ");
+..\userTask\controlded.c(249): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_Dive,"  ");
+..\userTask\controlded.c(290): warning:  #223-D: function "memset" declared implicitly
+  											memset(variant_Controled_driveR,0,10);
+..\userTask\controlded.c: 3 warnings, 0 errors
+compiling stm32f4xx_hal_adc.c...
+compiling canreceive.c...
+..\userTask\canreceive.c(514): warning:  #223-D: function "memset" declared implicitly
+  			memset(array_Canreceive_CanBUScmdR,0,8);
+..\userTask\canreceive.c: 1 warning, 0 errors
+compiling stm32f4xx_hal_flash_ex.c...
+compiling main_logic.c...
+..\userTask\main_logic.c(626): warning:  #223-D: function "strcpy" declared implicitly
+  									strcpy(variant_interface_SingalMove,"收侧护   ");
+..\userTask\main_logic.c(631): warning:  #223-D: function "strcpy" declared implicitly
+  									strcpy(variant_interface_SingalMove,"收底调     ");
+..\userTask\main_logic.c(636): warning:  #223-D: function "strcpy" declared implicitly
+  									strcpy(variant_interface_SingalMove,"备用动作 ");
+..\userTask\main_logic.c(657): warning:  #223-D: function "strcpy" declared implicitly
+  									strcpy(variant_interface_SingalMove,"伸侧护   ");
+..\userTask\main_logic.c(662): warning:  #223-D: function "strcpy" declared implicitly
+  									strcpy(variant_interface_SingalMove,"伸底调     ");
+..\userTask\main_logic.c(667): warning:  #223-D: function "strcpy" declared implicitly
+  									strcpy(variant_interface_SingalMove,"备用动作 ");
+..\userTask\main_logic.c(685): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"降立柱 ");
+..\userTask\main_logic.c(1055): warning:  #223-D: function "memset" declared implicitly
+  						memset(&_unitGroupCMD.arrayKEYGroup,0,8);	
+..\userTask\main_logic.c(1142): warning:  #223-D: function "memset" declared implicitly
+  										memset(&_unitGroupCMD.arrayKEYGroup,0,8);	
+..\userTask\main_logic.c(2185): warning:  #223-D: function "strcpy" declared implicitly
+  				strcpy(_variant_Mainlogic_statement.PRESENTstate_view,"设置");
+..\userTask\main_logic.c(2213): warning:  #550-D: variable "Key_value_test2"  was set but never used
+  static uint8_t Key_value_test,Key_value_test2;
+..\userTask\main_logic.c: 11 warnings, 0 errors
+compiling follow.c...
+..\userTask\follow.c(55): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"     伸护帮     ");
+..\userTask\follow.c(79): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"     收护帮     ");
+..\userTask\follow.c(105): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"     伸前梁     ");
+..\userTask\follow.c(131): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"     收前梁     ");
+..\userTask\follow.c(163): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"      推溜      ");
+..\userTask\follow.c(198): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"      降柱      ");
+..\userTask\follow.c(215): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"      移架      ");
+..\userTask\follow.c(236): warning:  #223-D: function "strcpy" declared implicitly
+  								strcpy(variant_interface_SingalMove,"      升柱      ");
+..\userTask\follow.c: 8 warnings, 0 errors
+compiling set.c...
+..\userTask\set.c(465): warning:  #940-D: missing return statement at end of non-void function "Set_Prar_Change_Input" 
+  }
+..\userTask\set.c(189): warning:  #177-D: variable "const_Set_InterfaceFlag"  was declared but never referenced
+  	uint8_t const_Set_InterfaceFlag =1;
+..\userTask\set.c: 2 warnings, 0 errors
+compiling group.c...
+compiling stm32f4xx_hal_flash_ramfunc.c...
+compiling stm32f4xx_hal_tim_ex.c...
+compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_exti.c...
+compiling stm32f4xx_hal_pwr.c...
+compiling stm32f4xx_hal_iwdg.c...
+compiling stm32f4xx_hal_cortex.c...
+compiling stm32f4xx_hal_dma_ex.c...
+compiling stm32f4xx_hal.c...
+compiling stm32f4xx_hal_uart.c...
+compiling stm32f4xx_hal_pwr_ex.c...
+compiling stm32f4xx_hal_gpio.c...
+compiling stm32f4xx_hal_can.c...
+compiling stm32f4xx_hal_spi.c...
+compiling stm32f4xx_hal_tim.c...
+compiling system_stm32f4xx.c...
+linking...
+Program Size: Code=58838 RO-data=3010 RW-data=3972 ZI-data=37484  
+FromELF: creating hex file...
+After Build - User command #1: .\..\output\hex2bin.exe   .\..\output\*hex
+hex2bin v2.5, Copyright (C) 2017 Jacques Pelletier & contributors
+Allocate_Memory_and_Rewind:
+Lowest address:   08008000
+Highest address:  0801775F
+Starting address: 08008000
+Max Length:       63328
+Binary file start = 08008000
+Records start     = 08008000
+Highest address   = 0801775F
+Pad Byte          = FF
+"..\output\electrohydraulic.axf" - 0 Error(s), 43 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil.STM32F4xx_DFP.2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_DEMO
+  C:\Users\1\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  C:\Users\1\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP\2.17.1\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.5.0
+      Include file:  CMSIS\Core\Include\tz_context.h
+Build Time Elapsed:  00:00:22
+</pre>
+</body>
+</html>

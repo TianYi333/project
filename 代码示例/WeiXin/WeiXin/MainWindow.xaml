@@ -1,0 +1,154 @@
+﻿<Window x:Class="WeiXin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeiXin"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="444" Width="583">
+    <Window.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="aa" Color="Red"/>
+            <FontFamily x:Key="IconFont">
+                pack://application:,,,/WeiXin;component/#iconfont
+            </FontFamily>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{DynamicResource aa}" />
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontFamily" Value="{DynamicResource IconFont}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <!--定义一个针对button的模板-->
+                            <Border x:Name="border" Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsDefaulted" Value="true">
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="TextBlock.Foreground" TargetName="border" Value="Purple" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="TextBlock.Foreground" TargetName="border" Value="LightGreen"/>
+                                    <!--<Setter Property="Background" TargetName="border" Value="white"/>-->
+                                </Trigger>
+                                <!--<Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>-->
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="55"/>
+            <ColumnDefinition Width="210"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <!--<FontFamily x:Key="iconfont">/Presentation/Resources/font/#iconfont</FontFamily>-->
+        <Grid Grid.Column="0" Background="#2e2e2e">
+            <StackPanel Orientation="Vertical" Cursor="Hand">
+                
+                <Button Width="35" Height="35" Margin="0,10,0,10">
+                    <Image Source="/1710400443786.png" />
+                </Button>
+                <Button Width="25" Height="25" Margin="0,5" BorderThickness="0" >
+                    <Image Source="/微信-聊天.png" />
+                </Button>
+                <Button  Width="25" Height="25" Margin="0,5" BorderThickness="0" Background="Transparent">
+                    <Image Source="/微信-通讯录.png" />
+                </Button>
+                <Button  Width="25" Height="25" Margin="0,5" BorderThickness="0" Background="Transparent">
+                    <Image Source="/微信收藏.png" />
+                </Button>
+                <Button Width="25" Height="25" Margin="0,5" BorderThickness="0"  Background="Transparent">
+                    <Image Source="/聊天-文件.png" />
+                </Button>
+                <Button Width="25" Height="25" Margin="0,5" BorderThickness="0"  Background="Transparent">
+                    <Image Source="/微信朋友圈.png"/>
+                </Button>
+                <Button Width="25" Height="25" Margin="0,5" BorderThickness="0"  Background="Transparent">
+                    <Image Source="/more.png" />
+                </Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Cursor="Hand">
+                <Button Width="25" Height="25" Margin="0,5" BorderThickness="0"  Background="Transparent">
+                    <Image Source="/小程序.png"/>
+                </Button>
+                <Button Width="25" Height="25" Margin="0,5" BorderThickness="0"  Background="Transparent">
+                    <Image Source="/微信_手机号.png"/>
+                </Button>
+                <Button Width="25" Height="25" Margin="0,5" BorderThickness="0"  Background="Transparent">
+                    <Image Source="/菜单.png"/>
+                </Button>
+                
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Background="#e5e4e4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="1" Background="Black"/>
+            <Grid Grid.Row="0">
+                <TextBox AcceptsReturn="True" Background="#f5f5f5" Margin="10,4,35,4" />
+                <Button Background="#f5f5f5" Height="20" Content="+" Width="20" Margin="4" HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2" Background="White" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Grid.Row="0">
+                <Label Content="山东大食堂（304）" FontSize="16"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2">
+            </StackPanel>
+            <Border Grid.Row="1" Background="Black"/>
+            <Border Grid.Row="3" Background="Black"/>
+            <StackPanel Background="#f5f5f5" Orientation="Horizontal" Grid.Row="4" >
+                <Button Width="25" Height="25"  Margin="5,0" BorderThickness="0"  Background="Transparent" Cursor="Hand" FontSize="20" FontWeight="Bold" Content="&#xe6dc;" >
+                    <!--<Image Source="/微信表情.png"/>-->
+                </Button>
+                <Button Width="25" Height="25" Margin="5,0" BorderThickness="0"  Background="Transparent" Cursor="Hand"  FontSize="20"  FontWeight="Bold" Content="&#xe6dc;" >
+                    <!--<Image Source="/微信文件.png"/>-->
+                </Button>
+                <Button Width="25" Height="25" Margin="5,0" BorderThickness="0"  Background="Transparent" Cursor="Hand" FontSize="20"  FontWeight="Bold" Content="&#xe6dc;"  >
+                    <!--<Image Source="/截图.png"/>-->
+                </Button>
+                <Button  Width="25" Height="25" Margin="5,0" BorderThickness="0"  Background="Transparent" FontSize="20" Cursor="Hand" FontWeight="Bold" Content="&#xe6dc;" Click="Button_Click" >
+                    <!--<Image Source="/微信_聊天记录.png"/>-->
+                </Button>
+            </StackPanel>
+            <Border Grid.Row="5" Background="Black"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Grid.Row="6">
+                <TextBox BorderThickness="0" AcceptsReturn="True" TextWrapping="Wrap"  Background="#f5f5f5" Height="150"/>
+            </StackPanel>
+            <StackPanel    Background="#f5f5f5" Grid.Row="7">
+                <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="#e9e9e9" Height="30" Width="70" Content="发送"  Margin="0,10,5,8" BorderThickness="0" Foreground="Green"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
