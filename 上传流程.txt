@@ -1,0 +1,8 @@
+git add 文件名.txt
+git add .
+
+git commit -m"描述"
+
+git push -u origin main
+
+
