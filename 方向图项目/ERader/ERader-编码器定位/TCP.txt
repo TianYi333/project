@@ -1,0 +1,66 @@
+		osDelay(1);
+//    printf("\r\nInitializing server socket\r\n");
+	  //Parameters in order socket_id, protocol TCP or UDP, Port number, Flags=0
+	  //Return value is socket ID on success
+	  if(socket(1,Sn_MR_TCP,LISTEN_PORT,0)!=1)//创建一个socket：Socket号，TCP/UDP类型，端口号
+	  {
+		  //error
+//		  printf("Cannot create Socket!\r\n");
+		  while(1);//halt here
+	  }
+	  //success
+//	  printf("Socket Created Successfully ! \r\n");
+	  uint8_t socket_io_mode=SOCK_IO_BLOCK;
+	  ctlsocket(1, CS_SET_IOMODE , &socket_io_mode);//set blocking IO mode
+//    printf("IP Address is %d.%d.%d.%d\r\n",gWIZNETINFO.ip[0],gWIZNETINFO.ip[1],gWIZNETINFO.ip[2],gWIZNETINFO.ip[3]);
+//	  printf("Start listening on port %d ! \r\n",LISTEN_PORT);
+//	  printf("Waiting for a client connection. \r\n");
+	  //Make it a passive socket (i.e. listen for connection)
+	  if(listen(1)!=SOCK_OK)//监听端口
+	  {//our socket id is 1 (w5500 have 8 sockets from 0-7)
+		  //error
+//		  printf("Cannot listen on port %d",LISTEN_PORT);
+		  while(1);
+	  }
+	  uint8_t sr=0x00;//socket status register
+	  do
+	  {
+		  sr=getSn_SR(1);//获取Sn_SR寄存器，参数0~7 
+	  }while (sr!=SOCK_ESTABLISHED && sr!=SOCK_CLOSED);
+
+	  if(sr==SOCK_CLOSED)
+	  {
+//		  printf("Some error occurred on server socket. Please restart.\r\n");
+		  while(1);
+	  }
+	  if(sr==SOCK_ESTABLISHED)//成功连接
+	  {
+		  //we come here only when a client has connected.
+		  //Now we can read data from the socket
+//		  printf("A client connected!\r\n");
+//		  printf("Waiting for Client Data ...!\r\n");
+		  while(1)
+		  {
+			  int len=recv(1, receive_buff, RECEIVE_BUFF_SIZE);//从连接设备读取数据到receive_buff
+			  if(len==SOCKERR_SOCKSTATUS)	// 读取W5500空闲接收缓存寄存器的值并赋给len
+			  {
+				  //client has disconnected
+//				  printf("Client has disconnected\r\n");
+//				  printf("*** SESSION OVER ***\r\n\r\n");
+				  break;
+			  }
+				//Look for quit message and quit if received
+			  if(strcmp((char*)receive_buff,"QUIT")==0)
+			  {//收到"QUIT"，端口客户端连接
+//				  printf("Received QUIT command from client\r\n");
+//				  printf("Disconnecting ... \r\n");
+//				  printf("*** SESSION OVER ***\r\n\r\n");
+				  disconnect(1);//disconnect from the clinet 断开客户端连接
+				  break;//come out of while loop 退出，回到131行，重新等待客户端连接
+			  }											
+				osMessageQueuePut(Ethernet_ReceiveHandle,receive_buff,1,0);
+				HAL_UART_Transmit(&huart3, receive_buff, 17, 10);
+				memset(receive_buff,0,RECEIVE_BUFF_SIZE);					
+		  }//While loop (as long as client is connected)
+//			send(1,(uint8_t*)Position,2);// the data          向客户端发送接收到的内容或者特定的回答	
+	  }//if block, client connect success	

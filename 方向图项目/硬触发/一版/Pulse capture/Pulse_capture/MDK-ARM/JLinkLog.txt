@@ -1,0 +1,20 @@
+T35FC 004:317.844   SEGGER J-Link V7.22b Log File
+T35FC 004:318.038   DLL Compiled: Jun 17 2021 17:22:49
+T35FC 004:318.072   Logging started @ 2024-04-22 09:22
+T35FC 004:318.105 - 4318.121ms
+T35FC 004:318.144 JLINK_SetWarnOutHandler(...)
+T35FC 004:318.179 - 0.051ms
+T35FC 004:318.214 JLINK_OpenEx(...)
+T35FC 004:320.544   
+  ***** Error: 
+T35FC 004:320.635   Cannot connect to J-Link.
+T35FC 004:368.222 - 50.042ms returns "Cannot connect to J-Link."
+T35FC 004:368.683 
+  ***** 
+T35FC 004:368.730 API Error: API JLINK_GetHardwareVersion function called before JLINKARM_Open()
+T35FC 004:368.777 JLINK_GetHardwareVersion()
+T35FC 004:386.895 - 18.155ms
+T35FC 008:618.969 JLINK_Close()
+T35FC 008:619.151 - 0.204ms
+T35FC 008:619.189   
+T35FC 008:619.222   Closed

@@ -1,0 +1,14 @@
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
+pulse_capture\stream_buffer.o: E:\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+pulse_capture\stream_buffer.o: E:\keil5\ARM\ARMCC\Bin\..\include\string.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+pulse_capture\stream_buffer.o: E:\keil5\ARM\ARMCC\Bin\..\include\stddef.h
+pulse_capture\stream_buffer.o: ../Core/Inc/FreeRTOSConfig.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
+pulse_capture\stream_buffer.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h
